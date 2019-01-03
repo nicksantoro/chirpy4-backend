@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/nicksantoro/goals-backend/issues"
   },
-  "homepage": "https://github.com/nicksantoro/goals-backend#readme"
+  "homepage": "https://github.com/nicksantoro/goals-backend#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9"
+  }
 }
