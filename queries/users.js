@@ -13,7 +13,18 @@ const getUserById = (userId) => {
     })
 }
 
+const deleteUserById = (userId) => {
+  console.log(userId)
+  return knex('users')
+    .where('id', userId)
+    .del()
+    .then(result => {
+      return result
+    })
+}
+
 module.exports = {
   getAllUsers,
-  getUserById
+  getUserById,
+  deleteUserById
 }
