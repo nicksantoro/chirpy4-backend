@@ -27,10 +27,16 @@ const createUser = (payload) => {
   })
 }
 
+const updateUserById = (id, payload) => {
+  const user = userQuery.updateUserById(id, payload);
+  return user.then(result => !result ? { error: "error updating user", status: 500 } : result)
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
-  createUser
+  createUser,
+  updateUserById
 }
 
