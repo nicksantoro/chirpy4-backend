@@ -8,6 +8,19 @@ const getAllUsers = (req, res, next) => {
   });
 }
 
-module.exports = {
-  getAllUsers
+const getUserById = (req, res, next) => {
+  console.log(req.params)
+  let { id } = req.params;
+  const promise = model.getUserById(id);
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
 }
+
+module.exports = {
+  getAllUsers,
+  getUserById
+}
+
