@@ -29,10 +29,20 @@ const deleteUserById = (req, res, next) => {
     })
 }
 
+const createUser = (req, res, next) => {
+  let payload = req.body;
+  const promise = model.createUser(payload);
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
+}
 
 module.exports = {
   getAllUsers,
   getUserById,
-  deleteUserById
+  deleteUserById,
+  createUser
 }
 
