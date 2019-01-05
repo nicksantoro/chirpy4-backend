@@ -5,7 +5,13 @@ const getAllUsers = () => {
   return user.then(result => (result.length < 1 ? { error: 'error retrieving users', status: 500 } : result))
 };
 
+const getUserById = (userId) => {
+  const user = userQuery.getUserById(userId);
+  return user.then(result => (!result ? { error: "error retrieving user by id", status: 500 } : result))
+}
+
 module.exports = {
-  getAllUsers
+  getAllUsers,
+  getUserById
 }
 
