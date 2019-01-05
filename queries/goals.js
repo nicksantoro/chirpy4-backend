@@ -1,10 +1,19 @@
 const knex = require('./db');
 
 const getAllGoals = () => {
-  return knex('goals').orderBy('created_at', 'desc');
+  return knex('goals')
+    .orderBy('created_at', 'desc');
 }
 
-module.exports = {
-  getAllGoals
+// const getGoalById = (goalId) => {
+//   return knex('goals')
+//     .where('id', goalId).first()
+//     .then(result => {
+//       return result;
+//     })
+// }
 
+module.exports = {
+  getAllGoals,
+  // getGoalById
 }
