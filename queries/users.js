@@ -5,7 +5,6 @@ const getAllUsers = () => {
 }
 
 const getUserById = (userId) => {
-  console.log(userId)
   return knex('users')
     .where('id', userId).first()
     .then(result => {

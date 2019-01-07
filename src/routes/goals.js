@@ -7,21 +7,16 @@ const ctrl = require('../controllers/goals');
 router.get('/', ctrl.getAllGoals);
 
 // get goal by id
-
 router.get('/:id', ctrl.getGoalById)
 
 // create goal
-
 router.post('/', ctrl.createGoal)
 
-
 // delete goal
-
 router.delete('/:id', ctrl.deleteGoalById)
 
-
 // update goal
-
+router.put('/:id', ctrl.updateGoalById)
 
 
 module.exports = router;

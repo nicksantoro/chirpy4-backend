@@ -35,10 +35,22 @@ const deleteGoalById = (req, res, next) => {
   });
 }
 
+const updateGoalById = (req, res, next) => {
+  const payload = req.body;
+  const { id } = req.params;
+  const promise = model.updateGoalById(id, payload);
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
+}
+
 
 module.exports = {
   getAllGoals,
   getGoalById,
   createGoal,
-  deleteGoalById
+  deleteGoalById,
+  updateGoalById
 }

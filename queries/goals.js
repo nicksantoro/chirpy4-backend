@@ -33,9 +33,16 @@ const deleteGoalById = (goalId) => {
     .returning('*')
 }
 
+const updateGoalById = (goalId, payload) => {
+  return knex('goals')
+    .where("id", goalId)
+    .update(payload, '*')
+}
+
 module.exports = {
   getAllGoals,
   getGoalById,
   createGoal,
-  deleteGoalById
+  deleteGoalById,
+  updateGoalById
 }
