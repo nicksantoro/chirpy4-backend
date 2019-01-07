@@ -21,8 +21,20 @@ const deleteUserById = (userId) => {
     })
 }
 
+const createUser = (payload) => {
+  return knex('users')
+    .insert({
+      name: payload.name,
+      username: payload.username,
+      password: payload.password,
+      email: payload.password,
+    })
+    .returning('*')
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
-  deleteUserById
+  deleteUserById,
+  createUser
 }

@@ -9,4 +9,6 @@ router.get('/:id', ctrl.getUserById);
 
 router.delete('/:id', ctrl.deleteUserById);
 
+router.post('/', ctrl.createUser)
+
 module.exports = router;

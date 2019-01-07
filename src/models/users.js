@@ -15,9 +15,22 @@ const deleteUserById = (userId) => {
   return user.then(result => !result ? { error: "error retrieving user by id", status: 500 } : result)
 }
 
+const createUser = (payload) => {
+  const user = userQuery.createUser(payload);
+  return user.then(result => {
+    if (!result) {
+      return { error: "error creating user", status: 500 }
+    } else {
+      const { password, created_at, updated_at, ...data } = result[0]
+      return data;
+    }
+  })
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
-  deleteUserById
+  deleteUserById,
+  createUser
 }
 
