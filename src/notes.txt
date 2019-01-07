@@ -1,0 +1,8 @@
+// CREATE GOAL
+
+on your insert try
+.insert(payload)
+
+instead of
+
+.insert({ users_id: payload.users_id, goal: payload.goal, description: payload.description, start_date: payload.start_date, end_date: payload.end_date, rank: payload.rank })

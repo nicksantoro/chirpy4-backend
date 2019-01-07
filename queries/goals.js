@@ -13,7 +13,14 @@ const getGoalById = (goalId) => {
     })
 }
 
+const createGoal = (payload) => {
+  return knex('goals')
+    .insert(payload)
+    .returning('*')
+}
+
 module.exports = {
   getAllGoals,
-  getGoalById
+  getGoalById,
+  createGoal
 }

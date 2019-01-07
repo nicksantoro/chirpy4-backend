@@ -10,7 +10,14 @@ const getGoalById = (goalId) => {
   return goal.then(result => (!result ? { error: "error, goal not found", status: 500 } : result));
 }
 
+const createGoal = (payload) => {
+  const goal = goalQuery.createGoal(payload);
+  return goal.then(result => (!result ? { error: "error creating goal", status: 500 } : result));
+
+}
+
 module.exports = {
   getAllGoals,
-  getGoalById
+  getGoalById,
+  createGoal
 }
