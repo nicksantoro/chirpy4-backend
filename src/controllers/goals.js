@@ -8,10 +8,17 @@ const getAllGoals = (req, res, next) => {
   });
 }
 
-
-
+const getGoalById = (req, res, next) => {
+  const { id } = req.params;
+  const promise = model.getGoalById(id)
+  promise.then(result => (result.error ? next(result) : res.status(200).json(result)));
+  promise.catch(error => {
+    next(error);
+  });
+}
 
 
 module.exports = {
-  getAllGoals
+  getAllGoals,
+  getGoalById
 }

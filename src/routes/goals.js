@@ -8,6 +8,7 @@ router.get('/', ctrl.getAllGoals);
 
 // get goal by id
 
+router.get('/:id', ctrl.getGoalById)
 
 // create goal
 
