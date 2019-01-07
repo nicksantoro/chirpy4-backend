@@ -5,12 +5,12 @@ const getAllGoals = () => {
   return goal.then(result => (result.length < 1 ? { error: "no goal exists", status: 500 } : result));
 }
 
-// const getGoalById = (goalId) => {
-//   const goal = goalQuery.getGoalById(goalId);
-//   return goal.then(result => (!result ? { error: "error, goal not found", status: 500 } : result));
-// }
+const getGoalById = (goalId) => {
+  const goal = goalQuery.getGoalById(goalId);
+  return goal.then(result => (!result ? { error: "error, goal not found", status: 500 } : result));
+}
 
 module.exports = {
   getAllGoals,
-  // getGoalById
+  getGoalById
 }

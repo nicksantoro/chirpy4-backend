@@ -5,15 +5,15 @@ const getAllGoals = () => {
     .orderBy('created_at', 'desc');
 }
 
-// const getGoalById = (goalId) => {
-//   return knex('goals')
-//     .where('id', goalId).first()
-//     .then(result => {
-//       return result;
-//     })
-// }
+const getGoalById = (goalId) => {
+  return knex('goals')
+    .where('id', goalId).first()
+    .then(result => {
+      return result;
+    })
+}
 
 module.exports = {
   getAllGoals,
-  // getGoalById
+  getGoalById
 }
