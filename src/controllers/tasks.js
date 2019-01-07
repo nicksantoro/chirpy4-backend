@@ -17,7 +17,18 @@ const getTaskById = (req, res, next) => {
   });
 }
 
+const deleteTaskById = (req, res, next) => {
+  const { id } = req.params;
+  const promise = model.deleteTaskById(id);
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
+}
+
 module.exports = {
   getAllTasks,
-  getTaskById
+  getTaskById,
+  deleteTaskById
 }

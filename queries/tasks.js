@@ -12,7 +12,15 @@ const getTaskById = (taskId) => {
     })
 }
 
+const deleteTaskById = (taskId) => {
+  return knex('tasks')
+    .where("id", taskId)
+    .del()
+    .returning('*')
+}
+
 module.exports = {
   getAllTasks,
-  getTaskById
+  getTaskById,
+  deleteTaskById
 }
