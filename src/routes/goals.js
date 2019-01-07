@@ -17,6 +17,8 @@ router.post('/', ctrl.createGoal)
 
 // delete goal
 
+router.delete('/:id', ctrl.deleteGoalById)
+
 
 // update goal
 

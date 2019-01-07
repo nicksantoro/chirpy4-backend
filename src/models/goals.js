@@ -16,8 +16,14 @@ const createGoal = (payload) => {
 
 }
 
+const deleteGoalById = (goalId) => {
+  const goal = goalQuery.deleteGoalById(goalId);
+  return goal.then(result => (!result ? { error: "goal not found", status: 500 } : result));
+}
+
 module.exports = {
   getAllGoals,
   getGoalById,
-  createGoal
+  createGoal,
+  deleteGoalById
 }
