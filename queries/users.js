@@ -5,7 +5,6 @@ const getAllUsers = () => {
 }
 
 const getUserById = (userId) => {
-  console.log(userId)
   return knex('users')
     .where('id', userId).first()
     .then(result => {
@@ -13,7 +12,17 @@ const getUserById = (userId) => {
     })
 }
 
+const deleteUserById = (userId) => {
+  return knex('users')
+    .where('id', userId)
+    .del()
+    .then(result => {
+      return result
+    })
+}
+
 module.exports = {
   getAllUsers,
-  getUserById
+  getUserById,
+  deleteUserById
 }

@@ -9,7 +9,6 @@ const getAllUsers = (req, res, next) => {
 }
 
 const getUserById = (req, res, next) => {
-  console.log(req.params)
   let { id } = req.params;
   const promise = model.getUserById(id);
   promise
@@ -19,8 +18,20 @@ const getUserById = (req, res, next) => {
     })
 }
 
+const deleteUserById = (req, res, next) => {
+  let { id } = req.params;
+  const promise = model.deleteUserById(id);
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
+}
+
+
 module.exports = {
   getAllUsers,
-  getUserById
+  getUserById,
+  deleteUserById
 }
 
