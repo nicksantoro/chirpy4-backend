@@ -11,7 +11,13 @@ const getTaskById = (taskId) => {
   return task.then(result => !result ? { error: 'error: this task does not exist', status: 500 } : result)
 }
 
+const deleteTaskById = (taskId) => {
+  const task = taskQuery.deleteTaskById(taskId);
+  return task.then(result => !result ? { error: 'error deleting task', status: 500 } : result)
+}
+
 module.exports = {
   getAllTasks,
-  getTaskById
+  getTaskById,
+  deleteTaskById
 }
