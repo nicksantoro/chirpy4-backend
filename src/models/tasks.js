@@ -21,9 +21,15 @@ const updateTaskById = (taskId, payload) => {
   return task.then(result => !result ? { error: 'error updating task', status: 500 } : result)
 }
 
+const createTask = (payload) => {
+  const task = taskQuery.createTask(payload);
+  return task.then(result => !result ? { error: 'error creating task', status: 500 } : result)
+}
+
 module.exports = {
   getAllTasks,
   getTaskById,
   deleteTaskById,
-  updateTaskById
+  updateTaskById,
+  createTask
 }
