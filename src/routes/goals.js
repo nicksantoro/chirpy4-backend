@@ -12,6 +12,8 @@ router.get('/:id', ctrl.getGoalById)
 
 // create goal
 
+router.post('/', ctrl.createGoal)
+
 
 // delete goal
 

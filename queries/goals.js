@@ -13,7 +13,21 @@ const getGoalById = (goalId) => {
     })
 }
 
+const createGoal = (payload) => {
+  return knex('goals')
+    .insert({
+      users_id: payload.users_id,
+      goal: payload.goal,
+      description: payload.description,
+      start_date: payload.start_date,
+      end_date: payload.end_date,
+      rank: payload.rank
+    })
+    .returning('*')
+}
+
 module.exports = {
   getAllGoals,
-  getGoalById
+  getGoalById,
+  createGoal
 }

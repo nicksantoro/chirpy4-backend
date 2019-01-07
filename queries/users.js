@@ -28,7 +28,7 @@ const createUser = (payload) => {
       name: payload.name,
       username: payload.username,
       password: payload.password,
-      email: payload.password,
+      email: payload.password
     })
     .returning('*')
 }
