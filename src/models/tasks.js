@@ -16,8 +16,14 @@ const deleteTaskById = (taskId) => {
   return task.then(result => !result ? { error: 'error deleting task', status: 500 } : result)
 }
 
+const updateTaskById = (taskId, payload) => {
+  const task = taskQuery.updateTaskById(taskId, payload);
+  return task.then(result => !result ? { error: 'error updating task', status: 500 } : result)
+}
+
 module.exports = {
   getAllTasks,
   getTaskById,
-  deleteTaskById
+  deleteTaskById,
+  updateTaskById
 }
