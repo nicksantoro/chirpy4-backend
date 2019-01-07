@@ -25,9 +25,16 @@ const updateTaskById = (taskId, payload) => {
     .update(payload, '*')
 }
 
+const createTask = (payload) => {
+  return knex('tasks')
+    .insert(payload)
+    .returning('*')
+}
+
 module.exports = {
   getAllTasks,
   getTaskById,
   deleteTaskById,
-  updateTaskById
+  updateTaskById,
+  createTask
 }

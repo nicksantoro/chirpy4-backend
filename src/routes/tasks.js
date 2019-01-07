@@ -15,4 +15,7 @@ router.delete('/:id', ctrl.deleteTaskById);
 // update task by id
 router.put('/:id', ctrl.updateTaskById);
 
+// create a new task
+router.post('/', ctrl.createTask);
+
 module.exports = router;
