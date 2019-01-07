@@ -19,8 +19,15 @@ const deleteTaskById = (taskId) => {
     .returning('*')
 }
 
+const updateTaskById = (taskId, payload) => {
+  return knex('tasks')
+    .where("id", taskId)
+    .update(payload, '*')
+}
+
 module.exports = {
   getAllTasks,
   getTaskById,
-  deleteTaskById
+  deleteTaskById,
+  updateTaskById
 }

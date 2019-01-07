@@ -10,6 +10,9 @@ router.get('/', ctrl.getAllTasks);
 router.get('/:id', ctrl.getTaskById);
 
 // delete task by id
-router.delete('/:id', ctrl.deleteTaskById)
+router.delete('/:id', ctrl.deleteTaskById);
+
+// update task by id
+router.put('/:id', ctrl.updateTaskById);
 
 module.exports = router;

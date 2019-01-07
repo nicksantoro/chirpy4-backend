@@ -27,8 +27,20 @@ const deleteTaskById = (req, res, next) => {
     })
 }
 
+const updateTaskById = (req, res, next) => {
+  const payload = req.body;
+  const { id } = req.params;
+  const promise = model.updateTaskById(id, payload)
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
+}
+
 module.exports = {
   getAllTasks,
   getTaskById,
-  deleteTaskById
+  deleteTaskById,
+  updateTaskById
 }
