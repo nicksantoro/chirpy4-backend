@@ -6,6 +6,12 @@ const getAllTasks = () => {
 
 }
 
+const getTaskById = (taskId) => {
+  const task = taskQuery.getTaskById(taskId);
+  return task.then(result => !result ? { error: 'error: this task does not exist', status: 500 } : result)
+}
+
 module.exports = {
-  getAllTasks
+  getAllTasks,
+  getTaskById
 }
