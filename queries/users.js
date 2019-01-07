@@ -32,9 +32,16 @@ const createUser = (payload) => {
     .returning('*')
 }
 
+const updateUserById = (id, payload) => {
+  return knex('users')
+    .where('id', id)
+    .update(payload, '*')
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
-  createUser
+  createUser,
+  updateUserById
 }
