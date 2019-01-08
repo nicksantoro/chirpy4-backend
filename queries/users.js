@@ -27,9 +27,17 @@ const createUser = (payload) => {
       name: payload.name,
       username: payload.username,
       password: payload.password,
-      email: payload.password
+      email: payload.email
     })
     .returning('*')
+}
+
+const getUserByEmail = (email) => {
+  return knex('users')
+    .where('email', email).orWhere('username', email).first()
+    .then(result => {
+      return result
+    })
 }
 
 const updateUserById = (id, payload) => {
@@ -43,5 +51,6 @@ module.exports = {
   getUserById,
   deleteUserById,
   createUser,
-  updateUserById
+  updateUserById,
+  getUserByEmail
 }
