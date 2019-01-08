@@ -5,4 +5,8 @@ const ctrl = require('../controllers/comments')
 
 router.get('/', ctrl.getAllComments);
 
+router.get('/:id', ctrl.getCommentById);
+
+router.delete('/:id', ctrl.deleteCommentById);
+
 module.exports = router;
