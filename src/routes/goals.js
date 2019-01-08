@@ -18,5 +18,11 @@ router.delete('/:id', ctrl.deleteGoalById)
 // update goal
 router.put('/:id', ctrl.updateGoalById)
 
+// get comments from goal
+// router.get('/:id/comments', ctrl.getCommentsFromGoal)
+
+// create a like
+router.put('/:id/like', ctrl.likeGoal)
+
 
 module.exports = router;

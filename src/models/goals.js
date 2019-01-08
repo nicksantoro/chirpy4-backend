@@ -24,7 +24,11 @@ const deleteGoalById = (goalId) => {
 const updateGoalById = (goalId, payload) => {
   const goal = goalQuery.updateGoalById(goalId, payload);
   return goal.then(result => (!result ? { error: "error updating goal", status: 500 } : result));
+}
 
+const likeGoal = (payload) => {
+  const like = goalQuery.likeGoal(payload);
+  return like.then(result => (!result ? { error: "error liking goal", status: 500 } : result));
 }
 
 module.exports = {
@@ -32,5 +36,6 @@ module.exports = {
   getGoalById,
   createGoal,
   deleteGoalById,
-  updateGoalById
+  updateGoalById,
+  likeGoal
 }
