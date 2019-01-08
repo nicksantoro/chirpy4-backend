@@ -10,7 +10,13 @@ const getCommentById = (commentId) => {
   return comment.then(result => (!result ? { error: "no comment exists", status: 500 } : result));
 }
 
+const deleteCommentById = (commentId) => {
+  const comment = commentQuery.deleteCommentById(commentId);
+  return comment.then(result => (!result ? { error: "no comment exists", status: 500 } : result));
+}
+
 module.exports = {
   getAllComments,
-  getCommentById
+  getCommentById,
+  deleteCommentById
 }

@@ -13,7 +13,15 @@ const getCommentById = (commentId) => {
     })
 }
 
+const deleteCommentById = (commentId) => {
+  return knex('comments')
+    .where("id", commentId)
+    .del()
+    .returning('*')
+}
+
 module.exports = {
   getAllComments,
-  getCommentById
+  getCommentById,
+  deleteCommentById
 }
