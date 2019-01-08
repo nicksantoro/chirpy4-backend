@@ -32,11 +32,17 @@ const updateUserById = (id, payload) => {
   return user.then(result => !result ? { error: "error updating user", status: 500 } : result)
 }
 
+const getUserByEmail = (email) => {
+  const user = userQuery.getUserByEmail(email);
+  return user.then(result => !result ? { error: "error, user does not exist", status: 422 } : result)
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
   createUser,
-  updateUserById
+  updateUserById,
+  getUserByEmail
 }
 

@@ -7,7 +7,7 @@ exports.seed = function (knex, Promise) {
         {
           name: 'Dave',
           username: 'dave',
-          password: 'password123',
+          password: '$2a$10$3xKOYnwmO7z6IxSSpLKtyOoNgeJKOHvw04sUxBhqO.ar2Kjv8mH26',
           email: 'dave@galvanize.com'
         },
         {
@@ -31,7 +31,7 @@ exports.seed = function (knex, Promise) {
         {
           name: 'Isabella',
           username: 'isabella',
-          password: 'password123',
+          password: '$2a$10$3xKOYnwmO7z6IxSSpLKtyOoNgeJKOHvw04sUxBhqO.ar2Kjv8mH26',
           email: 'isabella@email.com'
         }
       ]);
