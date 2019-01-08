@@ -36,9 +36,20 @@ const updateCommentById = (req, res, next) => {
   });
 }
 
+const createComment = (req, res, next) => {
+  const payload = req.body;
+  const promise = model.createComment(payload);
+  promise.then(result => (result.error ? next(result) : res.status(200).json(result)));
+  promise.catch(error => {
+    next(error);
+  });
+
+}
+
 module.exports = {
   getAllComments,
   getCommentById,
   deleteCommentById,
-  updateCommentById
+  updateCommentById,
+  createComment
 }

@@ -20,9 +20,16 @@ const updateCommentById = (commentId, payload) => {
   return comment.then(result => (!result ? { error: "no comment exists", status: 500 } : result));
 }
 
+const createComment = (payload) => {
+  const comment = commentQuery.createComment(payload);
+  return comment.then(result => (!result ? { error: "error, no comment", status: 500 } : result));
+}
+
+
 module.exports = {
   getAllComments,
   getCommentById,
   deleteCommentById,
-  updateCommentById
+  updateCommentById,
+  createComment
 }
