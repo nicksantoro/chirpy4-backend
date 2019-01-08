@@ -20,8 +20,15 @@ const deleteCommentById = (commentId) => {
     .returning('*')
 }
 
+const updateCommentById = (commentId, payload) => {
+  return knex('comments')
+    .where("id", commentId)
+    .update(payload, '*')
+}
+
 module.exports = {
   getAllComments,
   getCommentById,
-  deleteCommentById
+  deleteCommentById,
+  updateCommentById
 }

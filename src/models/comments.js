@@ -15,8 +15,14 @@ const deleteCommentById = (commentId) => {
   return comment.then(result => (!result ? { error: "no comment exists", status: 500 } : result));
 }
 
+const updateCommentById = (commentId, payload) => {
+  const comment = commentQuery.updateCommentById(commentId, payload);
+  return comment.then(result => (!result ? { error: "no comment exists", status: 500 } : result));
+}
+
 module.exports = {
   getAllComments,
   getCommentById,
-  deleteCommentById
+  deleteCommentById,
+  updateCommentById
 }
