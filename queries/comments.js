@@ -26,9 +26,17 @@ const updateCommentById = (commentId, payload) => {
     .update(payload, '*')
 }
 
+const createComment = (payload) => {
+  return knex('comments')
+    .insert(payload)
+    .returning('*')
+}
+
 module.exports = {
   getAllComments,
   getCommentById,
   deleteCommentById,
-  updateCommentById
+  updateCommentById,
+  createComment,
+  createComment
 }
