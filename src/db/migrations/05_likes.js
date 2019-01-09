@@ -3,7 +3,7 @@ exports.up = function (knex, Promise) {
     table.increments();
     table.integer("users_id").references('users.id').onDelete('cascade').notNullable();
     table.integer("goals_id").references('goals.id').onDelete('cascade').notNullable();
-    table.integer('value').defaultTo('0');
+    table.integer('value').defaultTo(0);
     table.timestamps(true, true);
   })
 };
