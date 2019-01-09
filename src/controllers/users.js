@@ -60,11 +60,11 @@ const updateUserById = (req, res, next) => {
 const loginUser = async (req, res, next) => {
   let payload = req.body;
   if (!payload.password || !payload.email) return res.status(400).json({ error: "username and password required" })
-  const userExists = await model.getUserByEmail(payload.email)
-  if (userExists.error) return res.status(404).json({ error: "user does not exist" })
-  const isValid = await bcrypt.compare(payload.password, userExists.password);
+  const user = await model.getUserByEmail(payload.email)
+  if (user.error) return res.status(404).json({ error: "user does not exist" })
+  const isValid = await bcrypt.compare(payload.password, user.password);
   if (isValid) {
-    delete userExists.password;
+    delete user.password;
     const timeIssued = Math.floor(Date.now() / 1000)
     const timeExpires = timeIssued + 86400 * 28
     const token = await jwt.sign(
@@ -73,14 +73,14 @@ const loginUser = async (req, res, next) => {
         aud: 'goals',
         iat: timeIssued,
         exp: timeExpires,
-        identity: userExists.id
+        identity: user.id
       },
       "secret"
     )
     console.log(jwt.decode(token))
     res.set({
       authorization: token
-    }).status(200).json(userExists)
+    }).status(200).json(user)
   }
   return res.status(404).json({ error: "username and password not valid" })
 }
