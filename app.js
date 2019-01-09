@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({ exposedHeaders: ["authorization"] }));
 
 const port = 5000;
 
