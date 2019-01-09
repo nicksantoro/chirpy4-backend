@@ -32,10 +32,17 @@ const updateGoalById = (goalId, payload) => {
     .update(payload, '*')
 }
 
+const likeGoal = (payload) => {
+  return knex('likes')
+    .insert(payload)
+    .returning('*')
+}
+
 module.exports = {
   getAllGoals,
   getGoalById,
   createGoal,
   deleteGoalById,
-  updateGoalById
+  updateGoalById,
+  likeGoal
 }

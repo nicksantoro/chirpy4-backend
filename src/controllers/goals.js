@@ -46,11 +46,24 @@ const updateGoalById = (req, res, next) => {
     })
 }
 
+const likeGoal = (req, res, next) => {
+  let goals_id = req.params.id;
+  let { value, users_id } = req.body;
+  const promise = model.likeGoal({ goals_id, value, users_id });
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
+
+}
+
 
 module.exports = {
   getAllGoals,
   getGoalById,
   createGoal,
   deleteGoalById,
-  updateGoalById
+  updateGoalById,
+  likeGoal
 }
