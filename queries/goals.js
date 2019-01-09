@@ -38,11 +38,18 @@ const likeGoal = (payload) => {
     .returning('*')
 }
 
+const joinGoal = (payload) => {
+  return knex('users_goals')
+    .insert(payload)
+    .returning('*')
+}
+
 module.exports = {
   getAllGoals,
   getGoalById,
   createGoal,
   deleteGoalById,
   updateGoalById,
-  likeGoal
+  likeGoal,
+  joinGoal
 }

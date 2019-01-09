@@ -31,11 +31,17 @@ const likeGoal = (payload) => {
   return like.then(result => (!result ? { error: "error liking goal", status: 500 } : result));
 }
 
+const joinGoal = (payload) => {
+  const join = goalQuery.joinGoal(payload);
+  return join.then(result => (!result ? { error: "error joining goal", status: 500 } : result));
+}
+
 module.exports = {
   getAllGoals,
   getGoalById,
   createGoal,
   deleteGoalById,
   updateGoalById,
-  likeGoal
+  likeGoal,
+  joinGoal
 }

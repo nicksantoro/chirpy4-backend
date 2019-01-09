@@ -24,5 +24,7 @@ router.put('/:id', ctrl.updateGoalById)
 // create a like
 router.put('/:id/like', ctrl.likeGoal)
 
+router.post('/:id/join', ctrl.joinGoal)
+
 
 module.exports = router;
