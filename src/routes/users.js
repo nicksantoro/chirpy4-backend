@@ -15,4 +15,6 @@ router.post('/login', ctrl.loginUser);
 
 router.put('/:id', ctrl.updateUserById);
 
+router.post('/token', ctrl.token);
+
 module.exports = router;

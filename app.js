@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const morgan = require('morgan')
 
 const userRoutes = require('./src/routes/users');
 const goalRoutes = require('./src/routes/goals');
@@ -10,6 +11,8 @@ const noteRoutes = require('./src/routes/notes');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use(morgan("dev"))
 
 const cors = require('cors');
 app.use(cors({ exposedHeaders: ["authorization"] }));
