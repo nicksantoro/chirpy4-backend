@@ -2,6 +2,7 @@ const model = require('../models/users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const env = require('../../env');
 
 const getAllUsers = (req, res, next) => {
   const promise = model.getAllUsers();
@@ -76,7 +77,7 @@ const loginUser = async (req, res, next) => {
         exp: timeExpires,
         identity: user.id
       },
-      "secret"
+      env.JWT_KEY
     )
 
     res.set({
