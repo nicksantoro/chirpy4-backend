@@ -58,6 +58,20 @@ const likeGoal = (req, res, next) => {
 
 }
 
+const joinGoal = (req, res, next) => {
+  let goals_id = req.params.id;
+  console.log(goals_id)
+  let { users_id } = req.body;
+  console.log("users", users_id)
+  console.log("goals", goals_id)
+  const promise = model.joinGoal({ users_id, goals_id });
+  promise
+    .then(result => (result.error ? next(result) : res.status(200).json(result)))
+    .catch(error => {
+      next(error)
+    })
+}
+
 
 module.exports = {
   getAllGoals,
@@ -65,5 +79,6 @@ module.exports = {
   createGoal,
   deleteGoalById,
   updateGoalById,
-  likeGoal
+  likeGoal,
+  joinGoal
 }
