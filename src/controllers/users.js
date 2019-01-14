@@ -2,6 +2,7 @@ const model = require('../models/users');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
 const getAllUsers = (req, res, next) => {
   const promise = model.getAllUsers();
   promise.then(result => (result.error ? next(result) : res.status(200).json(result)));
@@ -61,7 +62,7 @@ const loginUser = async (req, res, next) => {
   let payload = req.body;
   if (!payload.password || !payload.email) return res.status(400).json({ error: "username and password required" })
   const user = await model.getUserByEmail(payload.email)
-  if (user.error) return res.status(404).json({ error: "user does not exist" })
+  if (user.error) return res.status(404).json({ error: "username or password invalid" })
   const isValid = await bcrypt.compare(payload.password, user.password);
   if (isValid) {
     delete user.password;
@@ -77,12 +78,22 @@ const loginUser = async (req, res, next) => {
       },
       "secret"
     )
-    console.log(jwt.decode(token))
+
     res.set({
       authorization: token
     }).status(200).json(user)
   }
-  return res.status(404).json({ error: "username and password not valid" })
+  return res.status(404).json({ error: "username or password invalid" })
+}
+
+const token = async (req, res, next) => {
+  let token = req.get("authorization")
+  let userToken = await jwt.verify(token, "secret")
+  if (!userToken) return res.status(404).json({ error: "token invalid" })
+  if (userToken.exp > Date.now()) return res.status(404).json({ error: "token expired" })
+  let user = await model.getUserById(userToken.identity)
+  if (!user) return res.status(404).json({ error: "user not found" })
+  return res.status(200).json(user)
 }
 
 module.exports = {
@@ -91,6 +102,7 @@ module.exports = {
   deleteUserById,
   createUser,
   updateUserById,
-  loginUser
+  loginUser,
+  token
 }
 
