@@ -82,7 +82,7 @@ const loginUser = async (req, res, next) => {
       env.JWT_KEY
     )
 
-    res.set({
+    return res.set({
       authorization: token
     }).status(200).json(user)
   }
