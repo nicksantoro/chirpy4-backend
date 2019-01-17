@@ -66,6 +66,8 @@ const loginUser = async (req, res, next) => {
   if (user.error) return res.status(404).json({ error: "username or password invalid" })
   const isValid = await bcrypt.compare(payload.password, user.password);
   if (isValid) {
+    const goals = await model.getGoals(user.id)
+    user.goals = goals
     delete user.password;
     const timeIssued = Math.floor(Date.now() / 1000)
     const timeExpires = timeIssued + 86400 * 28
@@ -94,6 +96,8 @@ const token = async (req, res, next) => {
   if (userToken.exp > Date.now()) return res.status(404).json({ error: "token expired" })
   let user = await model.getUserById(userToken.identity)
   if (!user) return res.status(404).json({ error: "user not found" })
+  const goals = await model.getGoals(user.id)
+  user.goals = goals
   return res.status(200).json(user)
 }
 

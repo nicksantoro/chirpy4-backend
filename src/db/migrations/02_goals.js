@@ -8,6 +8,7 @@ exports.up = function (knex, Promise) {
     table.dateTime('start_date').notNullable().defaultTo(knex.fn.now())
     table.dateTime('end_date').notNullable();
     table.integer('rank').notNullable();
+    table.boolean('completed');
     table.timestamps(true, true);
   })
 };

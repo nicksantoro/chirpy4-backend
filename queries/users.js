@@ -46,11 +46,19 @@ const updateUserById = (id, payload) => {
     .update(payload, '*')
 }
 
+const getGoals = (id) => {
+  return knex('goals')
+    .where('users_id', id)
+    .orderBy('created_at', 'desc')
+
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
   createUser,
   updateUserById,
-  getUserByEmail
+  getUserByEmail,
+  getGoals
 }

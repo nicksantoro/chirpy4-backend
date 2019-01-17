@@ -37,12 +37,18 @@ const getUserByEmail = (email) => {
   return user.then(result => !result ? { error: "error, user does not exist", status: 422 } : result)
 }
 
+const getGoals = (id) => {
+  const goal = userQuery.getGoals(id);
+  return goal.then(result => !result ? { error: "error, goal does not exist", status: 422 } : result)
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   deleteUserById,
   createUser,
   updateUserById,
-  getUserByEmail
+  getUserByEmail,
+  getGoals
 }
 
