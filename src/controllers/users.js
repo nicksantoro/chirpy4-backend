@@ -91,7 +91,8 @@ const loginUser = async (req, res, next) => {
 
 const token = async (req, res, next) => {
   let token = req.get("authorization")
-  let userToken = await jwt.verify(token, "secret")
+  console.log(token)
+  let userToken = await jwt.verify(token, env.JWT_KEY)
   if (!userToken) return res.status(404).json({ error: "token invalid" })
   if (userToken.exp > Date.now()) return res.status(404).json({ error: "token expired" })
   let user = await model.getUserById(userToken.identity)
