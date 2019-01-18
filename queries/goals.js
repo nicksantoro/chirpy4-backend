@@ -1,7 +1,7 @@
 const knex = require('./db');
 
 const getAllGoals = () => {
-  return knex('goals')
+  return knex('goals').join('users_goals', 'goals.id', '=', 'users_goals.goals_id')
     .join('users', 'users.id', '=', 'goals.users_id')
     .orderBy('goals.created_at', 'desc')
     .select('users.username', 'users.image', 'goals.goal', 'goals.id', 'goals.description', 'goals.users_id', 'goals.start_date', 'goals.end_date', 'goals.created_at',
