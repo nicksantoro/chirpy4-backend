@@ -48,7 +48,7 @@ const updateUserById = (id, payload) => {
 
 const getGoals = (id) => {
   return knex('goals')
-    .where('users_id', id)
+    .where('users_id', id).join('users_goals', 'goals.id', '=', 'users_goals.goals_id')
     .orderBy('created_at', 'desc')
 
 }
